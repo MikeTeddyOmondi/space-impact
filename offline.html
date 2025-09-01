@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space Impact - Offline</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#00ff41" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="/images/android/android-launchericon-192-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Space Impact" />
+
+    <!-- iOS splash screens -->
+    <link
+      rel="apple-touch-startup-image"
+      href="/images/ios/1024.png"
+      media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/images/ios/512.png"
+      media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/images/ios/256.png"
+      media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/images/ios/192.png"
+      media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/images/ios/144.png"
+      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/images/ios/128.png"
+      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/images/ios/100.png"
+      media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/images/ios/72.png"
+      media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/images/ios/512.png"
+      media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="/images/ios/1024.png"
+      media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+    />
+
+    <style>
+      :root {
+        --space-green: #00ff41;
+        --space-dark: #0c0c0c;
+        --space-blue: #1a1a2e;
+      }
+
+      body {
+        background: linear-gradient(
+          135deg,
+          var(--space-dark) 0%,
+          var(--space-blue) 50%
+        );
+        font-family: "Courier New", monospace;
+        color: var(--space-green);
+      }
+
+      .space-card {
+        background: rgba(0, 20, 40, 0.9);
+        border: 2px solid var(--space-green);
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .space-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+      }
+
+      .btn-space {
+        background-color: var(--space-green);
+        color: var(--space-dark);
+        transition: all 0.3s ease;
+      }
+
+      .btn-space:hover {
+        background-color: #00cc33;
+        transform: translateY(-2px);
+      }
+
+      .header-title {
+        position: relative;
+        text-shadow: 0 0 10px var(--space-green);
+      }
+
+      .header-title::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background-color: var(--space-green);
+      }
+
+      .offline-message {
+        border-left: 4px solid var(--space-green);
+        background: rgba(0, 20, 40, 0.9);
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.7;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen p-4 md:p-8">
+    <div class="container mx-auto">
+      <!-- App Header -->
+      <header class="text-center mb-8">
+        <h1
+          class="text-3xl md:text-4xl font-bold header-title inline-block mx-auto"
+        >
+          Space Impact
+        </h1>
+        <p class="text-space-green mt-2">You're currently offline</p>
+      </header>
+
+      <!-- Offline Section -->
+      <section class="space-card p-6 mb-8 text-center">
+        <div class="flex justify-center items-end h-32">
+          <img
+            src="/images/offline-spaceship.png"
+            alt="Offline Spaceship"
+            class="h-24 pulse"
+          />
+        </div>
+
+        <h2 class="text-2xl font-semibold mb-4 text-center">
+          No Internet Connection
+        </h2>
+
+        <p class="mb-6 max-w-lg mx-auto">
+          It looks like you're not connected to the internet. You can still view
+          your high scores and play in offline mode.
+        </p>
+
+        <div
+          class="offline-message p-4 mb-6 rounded-md text-left max-w-lg mx-auto"
+        >
+          <h3 class="font-medium mb-2">While offline, you can:</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>View your saved high scores</li>
+            <li>Play the game in offline mode</li>
+          </ul>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-4">
+          <button
+            id="retry-connection"
+            class="btn-space py-2 px-6 rounded-md font-medium"
+          >
+            Retry Connection
+          </button>
+          <a
+            href="index.html"
+            class="py-2 px-6 rounded-md border border-space-green font-medium hover:bg-space-blue"
+          >
+            Continue Offline
+          </a>
+        </div>
+      </section>
+
+      <!-- Cached Data Section -->
+      <div class="space-card p-6">
+        <h2 class="text-xl font-semibold mb-4">Your High Scores</h2>
+        <div id="cached-data-status" class="text-center py-12">
+          <div class="inline-block mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-16 w-16"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+          </div>
+          <p>
+            Your saved high scores are available.<br />View them in offline
+            mode.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="mt-12 text-center text-sm">
+      <p>&copy; 2025 Space Impact | <a href="#" class="underline">Help</a></p>
+    </footer>
+
+    <script>
+      function updateOnlineStatus() {
+        const statusDisplay = document.getElementById("cached-data-status");
+        if (navigator.onLine) {
+          statusDisplay.innerHTML = `
+                    <div class="inline-block mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </div>
+                    <p>You're back online. Redirecting...</p>
+                `;
+          setTimeout(() => {
+            window.location.href = "index.html";
+          }, 5000);
+        }
+      }
+
+      window.addEventListener("online", updateOnlineStatus);
+      window.addEventListener("offline", updateOnlineStatus);
+      updateOnlineStatus();
+
+      document
+        .getElementById("retry-connection")
+        .addEventListener("click", () => {
+          window.location.reload();
+        });
+
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/service-worker.js").then(
+            (registration) => {
+              console.log("ServiceWorker registered: ", registration.scope);
+            },
+            (err) => {
+              console.log("ServiceWorker registration failed: ", err);
+            }
+          );
+        });
+      }
+    </script>
+  </body>
+</html>
