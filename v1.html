@@ -79,6 +79,12 @@
       media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
     />
 
+    <!-- Preload Critical Resources -->
+    <!-- <link rel="preload" href="/css/styles.css" as="style" /> -->
+
+    <!-- Styles -->
+    <!-- <link rel="stylesheet" href="/css/styles.css" /> -->
+
     <!-- Open Graph meta tags for social sharing -->
     <meta property="og:title" content="Space Impact" />
     <meta
@@ -97,7 +103,6 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        -webkit-tap-highlight-color: transparent;
       }
 
       body {
@@ -111,7 +116,6 @@
         color: #00ff41;
         overflow: hidden;
         height: 100vh;
-        touch-action: none;
       }
 
       .game-container {
@@ -133,15 +137,11 @@
         );
         box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
         border-radius: 10px;
-        display: block;
-        position: absolute;
-        image-rendering: pixelated;
       }
 
       .menu {
         position: absolute;
         width: 400px;
-        max-width: 90vw;
         background: rgba(0, 20, 40, 0.9);
         border: 2px solid #00ff41;
         border-radius: 15px;
@@ -149,8 +149,6 @@
         text-align: center;
         box-shadow: 0 0 50px rgba(0, 255, 65, 0.4);
         backdrop-filter: blur(10px);
-        max-height: 90vh;
-        overflow-y: auto;
       }
 
       .menu h1 {
@@ -158,12 +156,6 @@
         margin-bottom: 20px;
         text-shadow: 0 0 20px #00ff41;
         animation: glow 2s ease-in-out infinite alternate;
-      }
-
-      .menu h2 {
-        font-size: 1.8em;
-        margin-bottom: 15px;
-        text-shadow: 0 0 15px #00ff41;
       }
 
       @keyframes glow {
@@ -198,19 +190,17 @@
 
       .hud {
         position: absolute;
-        top: 10px;
-        left: 10px;
+        top: 20px;
+        left: 20px;
         color: #00ff41;
-        font-size: 1.1em;
+        font-size: 1.2em;
         text-shadow: 0 0 10px #00ff41;
         z-index: 10;
-        line-height: 1.4;
       }
 
       .game-over {
         position: absolute;
         width: 350px;
-        max-width: 90vw;
         background: rgba(20, 0, 0, 0.9);
         border: 2px solid #ff4141;
         border-radius: 15px;
@@ -253,287 +243,6 @@
         text-align: right;
         opacity: 0.7;
       }
-
-      .setting-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 15px 0;
-        padding: 10px;
-        border: 1px solid rgba(0, 255, 65, 0.3);
-        border-radius: 5px;
-        background: rgba(0, 255, 65, 0.05);
-      }
-
-      .setting-label {
-        text-align: left;
-        flex: 1;
-      }
-
-      .toggle-switch {
-        position: relative;
-        width: 60px;
-        height: 30px;
-        background: #444;
-        border-radius: 15px;
-        cursor: pointer;
-        transition: background 0.3s;
-      }
-
-      .toggle-switch.active {
-        background: #00ff41;
-      }
-
-      .toggle-slider {
-        position: absolute;
-        top: 3px;
-        left: 3px;
-        width: 24px;
-        height: 24px;
-        background: #fff;
-        border-radius: 50%;
-        transition: left 0.3s;
-      }
-
-      .toggle-switch.active .toggle-slider {
-        left: 33px;
-      }
-
-      /* Touch Controls Styles */
-      .touch-controls {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 5;
-        display: none;
-      }
-
-      .touch-button {
-        position: absolute;
-        background: rgba(0, 255, 65, 0.15);
-        border: 2px solid rgba(0, 255, 65, 0.4);
-        border-radius: 50%;
-        pointer-events: auto;
-        touch-action: none;
-        user-select: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #00ff41;
-        font-size: 1.5em;
-        font-weight: bold;
-        transition: all 0.1s;
-        box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
-      }
-
-      .touch-button.active {
-        background: rgba(0, 255, 65, 0.4);
-        border-color: rgba(0, 255, 65, 0.8);
-        transform: scale(0.9);
-        box-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
-      }
-
-      .dpad-container {
-        position: absolute;
-        bottom: 20px;
-        left: 15px;
-        width: 160px;
-        height: 160px;
-      }
-
-      .dpad-center {
-        position: absolute;
-        left: 57px;
-        top: 57px;
-        width: 46px;
-        height: 46px;
-        background: rgba(0, 255, 65, 0.05);
-        border: 2px solid rgba(0, 255, 65, 0.2);
-        border-radius: 50%;
-        pointer-events: none;
-      }
-
-      .dpad-up,
-      .dpad-down,
-      .dpad-left,
-      .dpad-right {
-        width: 55px;
-        height: 55px;
-      }
-
-      .dpad-up {
-        position: absolute;
-        top: 0;
-        left: 52.5px;
-      }
-
-      .dpad-down {
-        position: absolute;
-        bottom: 0;
-        left: 52.5px;
-      }
-
-      .dpad-left {
-        position: absolute;
-        left: 0;
-        top: 52.5px;
-      }
-
-      .dpad-right {
-        position: absolute;
-        right: 0;
-        top: 52.5px;
-      }
-
-      .fire-button {
-        position: absolute;
-        bottom: 35px;
-        right: 20px;
-        width: 70px;
-        height: 70px;
-        font-size: 2em;
-      }
-
-      .pause-button-touch {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        width: 45px;
-        height: 45px;
-        font-size: 1.2em;
-      }
-
-      /* Mobile optimizations */
-      @media (max-width: 768px) {
-        .controls-info {
-          display: none;
-        }
-
-        .hud {
-          font-size: 0.85em;
-          top: 5px;
-          left: 5px;
-          line-height: 1.3;
-        }
-
-        /* REMOVED: No more forced stretching */
-        .game-canvas {
-          border-radius: 5px;
-        }
-
-        /* Smaller buttons on small screens */
-        .dpad-container {
-          width: 140px;
-          height: 140px;
-          bottom: 15px;
-          left: 10px;
-        }
-
-        .dpad-center {
-          left: 50px;
-          top: 50px;
-          width: 40px;
-          height: 40px;
-        }
-
-        .dpad-up,
-        .dpad-down,
-        .dpad-left,
-        .dpad-right {
-          width: 48px;
-          height: 48px;
-          font-size: 1.3em;
-        }
-
-        .dpad-up {
-          left: 46px;
-        }
-
-        .dpad-down {
-          left: 46px;
-        }
-
-        .dpad-left {
-          top: 46px;
-        }
-
-        .dpad-right {
-          top: 46px;
-        }
-
-        .fire-button {
-          width: 60px;
-          height: 60px;
-          font-size: 1.8em;
-          bottom: 25px;
-          right: 15px;
-        }
-
-        .pause-button-touch {
-          width: 40px;
-          height: 40px;
-          font-size: 1em;
-          top: 8px;
-          right: 10px;
-        }
-
-        /* Make touch buttons semi-transparent for better gameplay visibility */
-        .touch-button {
-          background: rgba(0, 255, 65, 0.1);
-          border: 2px solid rgba(0, 255, 65, 0.3);
-        }
-      }
-
-      /* Extra small screens */
-      @media (max-width: 480px) {
-        .hud {
-          font-size: 0.75em;
-        }
-
-        .dpad-container {
-          width: 120px;
-          height: 120px;
-        }
-
-        .dpad-center {
-          left: 42px;
-          top: 42px;
-          width: 36px;
-          height: 36px;
-        }
-
-        .dpad-up,
-        .dpad-down,
-        .dpad-left,
-        .dpad-right {
-          width: 42px;
-          height: 42px;
-          font-size: 1.2em;
-        }
-
-        .dpad-up {
-          left: 39px;
-        }
-
-        .dpad-down {
-          left: 39px;
-        }
-
-        .dpad-left {
-          top: 39px;
-        }
-
-        .dpad-right {
-          top: 39px;
-        }
-
-        .fire-button {
-          width: 55px;
-          height: 55px;
-          font-size: 1.6em;
-        }
-      }
     </style>
   </head>
   <body>
@@ -546,7 +255,6 @@
         <p style="margin-bottom: 20px">Modern Edition</p>
         <button onclick="showDifficultyMenu()">New Game</button>
         <button onclick="showHighScores()">High Scores</button>
-        <button onclick="showSettings()">Settings</button>
         <button onclick="showControls()">Controls</button>
       </div>
 
@@ -567,62 +275,15 @@
         <button onclick="showMainMenu()">Back</button>
       </div>
 
-      <!-- Settings Menu (NEW) -->
-      <div class="menu" id="settingsMenu" style="display: none">
-        <h2>Settings</h2>
-
-        <div class="setting-item">
-          <div class="setting-label">
-            <strong>Touch Controls</strong><br />
-            <small style="opacity: 0.7">Show on-screen buttons</small>
-          </div>
-          <div
-            class="toggle-switch"
-            id="touchToggle"
-            onclick="toggleTouchControls()"
-          >
-            <div class="toggle-slider"></div>
-          </div>
-        </div>
-
-        <p
-          style="
-            font-size: 0.85em;
-            margin: 15px 0;
-            opacity: 0.8;
-            text-align: left;
-          "
-        >
-          Enable for mobile/touch devices. Disable for keyboard/mouse gameplay
-          on desktop.
-        </p>
-
-        <button onclick="showMainMenu()">Back to Menu</button>
-      </div>
-
       <!-- Controls -->
       <div class="menu" id="controlsMenu" style="display: none">
         <h2>Controls</h2>
-        <div style="text-align: left; margin: 15px 0">
-          <p><strong>Keyboard Controls:</strong></p>
-          <p style="margin-left: 10px">
-            Arrow Keys / WASD: Move Ship<br />
-            Spacebar: Fire<br />
-            P: Pause Game<br />
-            ESC: Return to Menu
-          </p>
-          <br />
-          <p><strong>Touch Controls:</strong></p>
-          <p style="margin-left: 10px">
-            D-Pad: Move Ship<br />
-            Fire Button: Shoot<br />
-            Pause Button: Pause Game
-          </p>
-          <br />
-          <p style="font-size: 0.85em; opacity: 0.8">
-            💡 Tip: Enable touch controls in Settings for mobile devices
-          </p>
-        </div>
+        <p style="text-align: left; margin: 15px 0">
+          Arrow Keys / WASD: Move Ship<br />
+          Spacebar: Fire<br />
+          P: Pause Game<br />
+          ESC: Return to Menu
+        </p>
         <button onclick="showMainMenu()">Back</button>
       </div>
 
@@ -654,31 +315,6 @@
         style="display: none"
       ></canvas>
 
-      <!-- Touch Controls (NEW) -->
-      <div class="touch-controls" id="touchControls">
-        <div class="dpad-container">
-          <div class="dpad-center"></div>
-          <div class="touch-button dpad-up" id="btnUp" data-key="ArrowUp">
-            ▲
-          </div>
-          <div class="touch-button dpad-down" id="btnDown" data-key="ArrowDown">
-            ▼
-          </div>
-          <div class="touch-button dpad-left" id="btnLeft" data-key="ArrowLeft">
-            ◀
-          </div>
-          <div
-            class="touch-button dpad-right"
-            id="btnRight"
-            data-key="ArrowRight"
-          >
-            ▶
-          </div>
-        </div>
-        <div class="touch-button fire-button" id="btnFire">🔥</div>
-        <div class="touch-button pause-button-touch" id="btnPause">⏸</div>
-      </div>
-
       <!-- HUD -->
       <div class="hud" id="gameHUD" style="display: none">
         <div>Score: <span id="score">0</span></div>
@@ -705,7 +341,7 @@
       </div>
 
       <!-- Controls Info -->
-      <div class="controls-info" id="controlsInfo">
+      <div class="controls-info">
         <div>Arrow Keys: Move | Spacebar: Fire | P: Pause | ESC: Menu</div>
       </div>
     </div>
@@ -717,15 +353,6 @@
       let currentDifficulty = "medium";
       let gameLoop;
       let keys = {};
-      let touchControlsEnabled = false; // NEW
-
-      // Scale factors for responsive canvas
-      let scaleX = 1;
-      let scaleY = 1;
-
-      // Base game dimensions (logical size)
-      const BASE_WIDTH = 800;
-      const BASE_HEIGHT = 600;
 
       // Game objects
       let player = {
@@ -770,138 +397,6 @@
         nightmare: { enemySpeed: 5, spawnRate: 0.06, enemyHealth: 4 },
       };
 
-      // NEW: Load settings from localStorage
-      function loadSettings() {
-        const saved = localStorage.getItem("touchControlsEnabled");
-        if (saved === "true") {
-          touchControlsEnabled = true;
-          document.getElementById("touchToggle").classList.add("active");
-        }
-      }
-
-      // NEW: Toggle touch controls
-      function toggleTouchControls() {
-        touchControlsEnabled = !touchControlsEnabled;
-        const toggle = document.getElementById("touchToggle");
-        toggle.classList.toggle("active");
-        localStorage.setItem("touchControlsEnabled", touchControlsEnabled);
-
-        if (gameState === "playing") {
-          document.getElementById("touchControls").style.display =
-            touchControlsEnabled ? "block" : "none";
-        }
-      }
-
-      // NEW: Show settings menu
-      function showSettings() {
-        hideAllMenus();
-        document.getElementById("settingsMenu").style.display = "block";
-      }
-
-      // NEW: Initialize touch controls
-      function initTouchControls() {
-        ["btnUp", "btnDown", "btnLeft", "btnRight"].forEach((btnId) => {
-          const btn = document.getElementById(btnId);
-          const keyCode = btn.dataset.key;
-
-          btn.addEventListener(
-            "touchstart",
-            (e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              keys[keyCode] = true;
-              btn.classList.add("active");
-            },
-            { passive: false }
-          );
-
-          btn.addEventListener(
-            "touchend",
-            (e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              keys[keyCode] = false;
-              btn.classList.remove("active");
-            },
-            { passive: false }
-          );
-
-          btn.addEventListener(
-            "touchcancel",
-            (e) => {
-              e.preventDefault();
-              keys[keyCode] = false;
-              btn.classList.remove("active");
-            },
-            { passive: false }
-          );
-        });
-
-        const fireBtn = document.getElementById("btnFire");
-        let fireInterval = null;
-
-        fireBtn.addEventListener(
-          "touchstart",
-          (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            fireBtn.classList.add("active");
-
-            if (gameState === "playing" && !isPaused) {
-              shootBullet();
-              fireInterval = setInterval(() => {
-                if (gameState === "playing" && !isPaused) {
-                  shootBullet();
-                }
-              }, 100);
-            }
-          },
-          { passive: false }
-        );
-
-        fireBtn.addEventListener(
-          "touchend",
-          (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            fireBtn.classList.remove("active");
-            if (fireInterval) {
-              clearInterval(fireInterval);
-              fireInterval = null;
-            }
-          },
-          { passive: false }
-        );
-
-        fireBtn.addEventListener(
-          "touchcancel",
-          (e) => {
-            e.preventDefault();
-            fireBtn.classList.remove("active");
-            if (fireInterval) {
-              clearInterval(fireInterval);
-              fireInterval = null;
-            }
-          },
-          { passive: false }
-        );
-
-        const pauseBtn = document.getElementById("btnPause");
-        pauseBtn.addEventListener(
-          "touchstart",
-          (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            pauseBtn.classList.add("active");
-            if (gameState === "playing") {
-              isPaused = !isPaused;
-            }
-            setTimeout(() => pauseBtn.classList.remove("active"), 200);
-          },
-          { passive: false }
-        );
-      }
-
       // Initialize stars background
       function createStars() {
         const starsContainer = document.getElementById("stars");
@@ -916,43 +411,10 @@
         }
       }
 
-      function resizeCanvas() {
-        const canvas = document.getElementById("gameCanvas");
-        if (!canvas || canvas.style.display === "none") return;
-
-        // Get actual screen dimensions
-        const screenWidth = window.innerWidth;
-        const screenHeight = window.innerHeight;
-
-        // Set canvas to fill screen
-        canvas.width = screenWidth;
-        canvas.height = screenHeight;
-        canvas.style.width = screenWidth + "px";
-        canvas.style.height = screenHeight + "px";
-
-        // Calculate scale factors for game logic
-        scaleX = screenWidth / BASE_WIDTH;
-        scaleY = screenHeight / BASE_HEIGHT;
-
-        // Recreate background stars for new canvas size
-        if (gameState === "playing") {
-          backgroundStars = [];
-          for (let i = 0; i < 50; i++) {
-            backgroundStars.push({
-              x: Math.random() * canvas.width,
-              y: Math.random() * canvas.height,
-              speed: Math.random() * 2 + 1,
-              size: Math.random() * 2 + 1,
-            });
-          }
-        }
-      }
-
       // Menu functions
       function showMainMenu() {
         hideAllMenus();
         document.getElementById("mainMenu").style.display = "block";
-        document.getElementById("touchControls").style.display = "none"; // NEW
         gameState = "menu";
       }
 
@@ -996,14 +458,6 @@
         canvas.style.display = "block";
         document.getElementById("gameHUD").style.display = "block";
 
-        // NEW: Resize canvas to fit screen while maintaining aspect ratio
-        resizeCanvas();
-
-        // NEW: Show touch controls if enabled
-        if (touchControlsEnabled) {
-          document.getElementById("touchControls").style.display = "block";
-        }
-
         resetGame();
         gameState = "playing";
         gameLoop = setInterval(update, 1000 / 60); // 60 FPS
@@ -1011,11 +465,11 @@
 
       function resetGame() {
         player = {
-          x: canvas.width * 0.24, // 15% from left edge (more centered, visible past controls)
-          y: canvas.height / 2,
+          x: 50,
+          y: 300,
           width: 40,
           height: 25,
-          speed: 5 * Math.min(scaleX, scaleY),
+          speed: 5,
           health: 100,
           maxHealth: 100,
           weaponType: "basic",
@@ -1137,10 +591,6 @@
       }
 
       function shootBullet() {
-        const bulletSpeed = 10 * scaleX;
-        const bulletWidth = 12 * scaleX;
-        const bulletHeight = 4 * scaleY;
-
         if (player.fireRate > 0) return;
 
         switch (player.weaponType) {
@@ -1148,9 +598,9 @@
             bullets.push({
               x: player.x + player.width,
               y: player.y + player.height / 2,
-              width: bulletWidth,
-              height: bulletHeight,
-              speed: bulletSpeed,
+              width: 12,
+              height: 4,
+              speed: 10,
               damage: player.weaponLevel,
               color: "#44ff44",
             });
@@ -1161,9 +611,9 @@
             bullets.push({
               x: player.x + player.width,
               y: player.y + player.height / 2,
-              width: bulletWidth,
-              height: bulletHeight,
-              speed: bulletSpeed,
+              width: 8,
+              height: 2,
+              speed: 15,
               damage: Math.ceil(player.weaponLevel / 2),
               color: "#ffff44",
             });
@@ -1175,9 +625,9 @@
               bullets.push({
                 x: player.x + player.width,
                 y: player.y + player.height / 2,
-                width: bulletWidth,
-                height: bulletHeight,
-                speed: bulletSpeed,
+                width: 10,
+                height: 3,
+                speed: 12,
                 damage: player.weaponLevel,
                 color: "#ff44ff",
                 vy: i * 2,
@@ -1190,9 +640,9 @@
             bullets.push({
               x: player.x + player.width,
               y: player.y + player.height / 2,
-              width: bulletWidth,
-              height: bulletHeight,
-              speed: bulletSpeed,
+              width: 20,
+              height: 6,
+              speed: 20,
               damage: player.weaponLevel * 2,
               color: "#44ffff",
               piercing: true,
@@ -2174,7 +1624,6 @@
       function endGame() {
         clearInterval(gameLoop);
         gameState = "gameOver";
-        document.getElementById("touchControls").style.display = "none"; // NEW
 
         // Save high score
         const scores = JSON.parse(
@@ -2192,30 +1641,8 @@
         document.getElementById("gameHUD").style.display = "none";
       }
 
-      window.addEventListener("resize", () => {
-        if (gameState === "playing") {
-          resizeCanvas();
-        }
-      });
-
-      window.addEventListener("orientationchange", () => {
-        setTimeout(() => {
-          if (gameState === "playing") {
-            resizeCanvas();
-          }
-        }, 100);
-      });
-
-      // Call resize on window resize and orientation change
-      window.addEventListener("resize", resizeCanvas);
-      window.addEventListener("orientationchange", () => {
-        setTimeout(resizeCanvas, 100); // Small delay for orientation change
-      });
-
       // Initialize
       createStars();
-      initTouchControls(); // NEW
-      loadSettings(); // NEW
       showMainMenu();
     </script>
   </body>
